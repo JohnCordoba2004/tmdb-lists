@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cartelera</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Source+Serif+4:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/src/style.css" />
+  </head>
+  <body>
+    <header class="marquee">
+      <div class="marquee-title">
+        <h1>Cartelera</h1>
+        <p>Las películas más populares del momento</p>
+      </div>
+
+      <!-- Typescript escuhca el 'submit' de este formulario -->
+      <form id="search-form" class="search" role="search" autocomplete="off">
+        <label for="search-input" class="sr-only">Buscar película</label>
+        <input
+          id="search-input"
+          type="search"
+          placeholder="Busca una película"
+          required
+        />
+        <button type="submit">Buscar</button>
+      </form>
+    </header>
+
+    <main>
+      <!-- Typescript escribe acá lo mensajes de carga o error -->
+      <p id="message" role="status" aria-live="polite"></p>
+      <!-- Typescript clona la pantalla de abajo por cada película y la mete aquí-->
+      <section id="movie-grid" class="movie-grid" aria-label="Peliculas">
+        <!-- Aqui va el diseno -->
+      </section>
+      <nav class="pagination" aria-label="Paginación">
+        <button id="prev-page" class="page-btn" type="button">Anterior</button>
+        <span id="page-info" class="page-info">Página 1</span>
+        <button id="next-page" class="page-btn" type="button">Siguiente</button>
+      </nav>
+    </main>
+
+    <!-- Plantilla el js la clona con cloneNode(true) y llena sus campos -->
+    <template id="movie-card-template">
+      <article class="movie-card">
+        <div class="poster-wrap">
+          <img src="" alt="" loading="lazy" class="poster" />
+          <span class="score"><span class="score-value"></span></span>
+          <button type="button" class="details-btn">Ver detalles</button>
+        </div>
+        <h2 class="movie-title"></h2>
+        <p class="movie-meta"></p>
+      </article>
+    </template>
+
+    <!-- Modal con dialog. se abre con modal.showModal()-->
+    <dialog id="modal" class="modal">
+      <div class="modal-panel">
+        <button id="close-modal" class="close" type="button">Cerrar</button>
+
+        <div class="modal-body">
+          <img id="modal-poster" class="modal-poster" src="" alt="" />
+          <div class="modal-info">
+            <h2 id="modal-title" class="modal-title">Titulo de la pelicula</h2>
+            <dl class="facts">
+              <div>
+                <dt>Estreno</dt>
+                <dd id="modal-date">2024-01-01</dd>
+              </div>
+              <div>
+                <dt>Calificacion</dt>
+                <dd><span id="modal-score">7.8</span> de 10</dd>
+              </div>
+            </dl>
+
+            <h3 class="section-title">Sinopsis</h3>
+            <p id="modal-overview" class="overview">Aqui va la sinopsis</p>
+
+            <h3 class="section-title">Géneros</h3>
+            <ul id="modal-genres" class="genres">
+              <li>Drama</li>
+              <li>Acción</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </dialog>
+    <!-- script -->
+    <script type="module" src="/src/prueba.ts"></script>
+    <!-- <script type="module" src="/src/main.ts"></script> -->
+  </body>
+</html>
